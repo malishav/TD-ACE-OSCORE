@@ -284,7 +284,7 @@ _AS resources_:
 |      |          | - Content-Format: application/cbor                       |
 |      |          | - Payload: CBOR map containing:                          |
 |      |          |    - grant_type parameter, value "client_credentials"    |
-|      |          |    - aud parameter, value "resource1"                    |
+|      |          |    - scope parameter, value "resource1"                  |
 +------+----------+----------------------------------------------------------+
 | 3    | Check    | C receives, decrypts, parses and processes the response  |
 |      |          | from AS:                                                 |
