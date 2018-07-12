@@ -292,7 +292,6 @@ _AS resources_:
 |      |          | - OSCORE verification succeeds                           |
 |      |          | - OSCORE Code: 2.01 Created                              |
 |      |          | - Payload: CBOR map containing:                          |
-|      |          |   - profile parameter, value "coap_oscore"               |
 |      |          |   - access_token parameter, opaque binary string         |
 |      |          |   - cnf parameter, as a CBOR map, containing:            |
 |      |          |     - COSE_Key map, containing:                          |
