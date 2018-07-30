@@ -171,7 +171,8 @@ IP connectivity between C, RS and AS is assumed for the tests to be executed.
 ### F-Interop-specific Configuration {#finterop-config}
 
 Since these tests are implemented as part of the 6TiSCH Testing Tool, when testing with the F-Interop platform, the AS is assumed to be co-located with 6LoWPAN Border Router (6LBR) in the 6TiSCH network.
-The RS and C are co-located with 6TiSCH nodes.
+The RS is co-located with a 6TiSCH node.
+The C is a generic Internet host.
 
 ### Security Context A: Shared Between C and AS {#context-as-c}
 
