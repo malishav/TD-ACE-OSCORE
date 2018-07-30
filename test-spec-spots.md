@@ -68,7 +68,7 @@ The OAuth 2.0 flow is illustrated in the following figure.
 The ACE framework allows different communication security mechanisms to be used for providing a secure channel, as well as different web transfer protocols.
 This includes protocols such as TLS, DTLS, and OSCORE for providing a secure channel, and HTTP or CoAP for web transfer.
 These bindings of the ACE framework with specific protocols are defined in ACE profiles.
-This TD focuses on the [OSCORE profile of ACE](https://tools.ietf.org/html/draft-ietf-ace-oscore-profile-01), that specifies the use of CoAP for web transfer and OSCORE for communication security..
+This TD focuses on the [OSCORE profile of ACE](https://tools.ietf.org/html/draft-ietf-ace-oscore-profile-02), that specifies the use of CoAP for web transfer and OSCORE for communication security..
 
 Object Security for Constrained RESTful Environments (OSCORE) is a mechanism to secure Constrained Application Protocol (CoAP).
 Its distinguishing feature is that it provides end-to-end security in all scenarios where CoAP can be used, including communication through CoAP proxies, CoAP-to-HTTP proxies, and group communication (specified in a companion document).
@@ -80,7 +80,7 @@ The OSCORE profile of ACE fills this gap and allows the C and the RS to dynamica
 How the OSCORE context between the C and the AS, and the RS and the AS, is established is still out-of-scope and typically includes pre-configuration.
 AS returns what is termed as access token, that is bound to a cryptographic key (proof-of-possession key).
 From this access token, C and RS can establish a secure channel.
-For more details on OSCORE profile of ACE, the reader may refer to the [latest technical specification](https://tools.ietf.org/html/draft-ietf-ace-oscore-profile-01).
+For more details on OSCORE profile of ACE, the reader may refer to the [latest technical specification](https://tools.ietf.org/html/draft-ietf-ace-oscore-profile-02).
 
 ## 3. Testing with F-Interop Platform {#finterop}
 
@@ -157,9 +157,9 @@ In the context of OSCORE profile of ACE, an Implementation Under Test (IUT) impl
 
 * [RFC7252](https://tools.ietf.org/html/rfc7252) (CoAP)
 * [draft-ietf-core-object-security](https://tools.ietf.org/html/draft-ietf-core-object-security-07)
-* [draft-ietf-ace-oauth-authz](https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-10)
-* [draft-ietf-ace-oscore-profile](https://tools.ietf.org/html/draft-ietf-ace-oscore-profile-01)
-* [draft-ietf-ace-cbor-web-token](https://tools.ietf.org/html/draft-ietf-ace-cbor-web-token-12)
+* [draft-ietf-ace-oauth-authz](https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-13)
+* [draft-ietf-ace-oscore-profile](https://tools.ietf.org/html/draft-ietf-ace-oscore-profile-02)
+* [draft-ietf-ace-cbor-web-token](https://tools.ietf.org/html/rfc8392)
 
 The use of default, proof-of-possession (pop) tokens is assumed throughout the document.
 
@@ -194,7 +194,7 @@ The RS and C are co-located with 6TiSCH nodes.
 The RS must implement the following resources:
 
 * /authz-info : resource to publish tokens to. Authorized method POST.
-* /resource1 : protected resource for reading and writing. Access authorized over OSCORE. Returns the string `Hello World!` with content-format 0 (text/plain).
+* /resource1 : protected resource. Authorized method GET over OSCORE. Returns the string `Hello World!` with content-format 0 (text/plain).
 * /resource2 : protected resource - will never be accessed. Access authorized over OSCORE.
 
 For unauthorized requests, the RS returns to the C the AS Information object.
@@ -202,7 +202,7 @@ The AS Information contains the information (i.e. absolute URI) where C can reac
 
 The AS must implement the following resources:
 
-* /token : Authorized method POST, with CBOR-encoded payload as specified by [draft-ietf-ace-oauth-authz](https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-10). 
+* /token : Authorized method POST, with CBOR-encoded payload as specified by [draft-ietf-ace-oauth-authz](https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-13). 
 Access authorized over OSCORE.
 Emits read only token for /resource1.
 Always fails when emitting token for /resource2.
@@ -219,7 +219,7 @@ Always fails when emitting token for /resource2.
 
 _server resources_:
 
-* /resource1 : authorized method: GET, POST. Returns the string "Hello World!" with content-format text/plain
+* /resource1 : authorized method: GET. Returns the string "Hello World!" with content-format text/plain
 
 **Test Sequence**
 
@@ -239,7 +239,6 @@ _server resources_:
 |      |          | decoded as:                                              |
 |      |          |                                                          |
 |      |          | - Code: 4.01 Unauthorized                                |
-|      |          | - Content-Format: application/ace+cbor                   |
 |      |          | - Payload: CBOR map containing at least the "AS" element |
 |      |          |   with absolute URI:                                     |
 |      |          |   - scheme matching to "coap"                            |
@@ -281,7 +280,6 @@ _AS resources_:
 |      |          | - OSCORE verification succeeds                           |
 |      |          | - OSCORE Code: POST                                      |
 |      |          | - Uri-Path: token                                        |
-|      |          | - Content-Format: application/cbor                       |
 |      |          | - Payload: CBOR map containing:                          |
 |      |          |    - grant_type parameter, value "client_credentials"    |
 |      |          |    - scope parameter, value "resource1"                  |
