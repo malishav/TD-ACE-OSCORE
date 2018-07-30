@@ -175,19 +175,19 @@ The RS and C are co-located with 6TiSCH nodes.
 
 ### Security Context A: Shared Between C and AS {#context-as-c}
 
-    * Master Secret: `01-02-03-04-05-06-07-08-09-0A-0B-0C-0D-0E-0F-10-11-12-13-14-15-16-17-18-19-1A-1B-1C-1D-1E-1F-20-21-22-23`
+    * Master Secret: `00-01-02-03-04-05-06-07-08-09-0A-0B-0C-0D-0E-0F`
     * Master Salt: empty
     * Alg: AES-CCM-16-64-128
     * Client (sender) ID: `63-6C-69-65-6E-74`
-    * Authorization Server (recipient) ID: `61-73`
+    * Authorization Server (recipient) ID: `4A-52-43`
 
 ### Security Context B: Shared Between RS and AS {#context-as-rs}
 
-    * Master Secret: `01-02-03-04-05-06-07-08-09-0A-0B-0C-0D-0E-0F-10-11-12-13-14-15-16-17-18-19-1A-1B-1C-1D-1E-1F-20-21-22-23`
+    * Master Secret: `DE-AD-BE-EF-CA-FE-DE-AD-BE-EF-CA-FE-DE-AD-BE-EF`
     * Master Salt: empty
     * Alg: AES-CCM-16-64-128
-    * Resource Server (sender) ID: `73-65-72-76-65-72`
-    * Authorization Server (recipient) ID: `61-73`
+    * Resource Server (sender) ID: EUI-64 of the device
+    * Authorization Server (recipient) ID: `4A-52-43`
 
 ### Resources {#resources}
 
