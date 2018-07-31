@@ -326,6 +326,7 @@ _server resources_:
 | 2    | Check    | RS receives the request from C, which is decoded as:     |
 |      |          |                                                          |
 |      |          | - Code: POST                                             |
+|      |          | - Uri-Path: authz-info                                   |
 |      |          | - Payload: binary string                                 |
 +------+----------+----------------------------------------------------------+
 | 3    | Verify   | RS validates the access token successfully               |
@@ -362,6 +363,7 @@ _server resources_:
 |      |          | from C:                                                  |
 |      |          |                                                          |
 |      |          | - OSCORE verification succeeds                           |
+|      |          | - Uri-Path: resource1                                    |
 |      |          | - OSCORE Code: GET                                       |
 +------+----------+----------------------------------------------------------+
 | 3    | Verify   | RS validates the scope of the token and permits the GET  |
@@ -401,6 +403,7 @@ _server resources_:
 | 2    | Check    | RS receives the request from C, which is decoded as:     |
 |      |          |                                                          |
 |      |          | - Code: POST                                             |
+|      |          | - Uri-Path: authz-info                                   |
 |      |          | - Payload: binary string                                 |
 +------+----------+----------------------------------------------------------+
 | 3    | Verify   | RS fails to validate the access token                    |
@@ -440,7 +443,8 @@ _server resources_:
 |      |          |                                                          |
 |      |          | - OSCORE verification succeeds                           |
 |      |          | - OSCORE Code: POST                                      |
-|      |          | - Payload: non-empty
+|      |          | - Uri-Path: resource1                                    |
+|      |          | - Payload: non-empty                                     |
 +------+----------+----------------------------------------------------------+
 | 3    | Verify   | RS validates the scope of the token and does not permit  |
 |      |          | the POST operation.                                      |
