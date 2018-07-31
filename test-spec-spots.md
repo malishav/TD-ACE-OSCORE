@@ -305,7 +305,7 @@ _AS resources_:
 
 ### 8.2 Identifier: TD_ACE_OSCORE_CORRECTUSE_02 {#test-3}
 
-**Objective** : Post the access token to the RS and obtain a token identifier
+**Objective** : Post the access token to the RS.
 
 **Configuration** :
 
